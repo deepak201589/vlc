@@ -64,12 +64,11 @@ function parse()
     page = page_url:read( 65653 )
 
 
-	hd1080url = string.match( page, "\"stream_h264_hd1080_url\"%s*:%s*\"([^\"]*)\"")
-	hdurl = string.match( page, "\"stream_h264_hd_url\"%s*:%s*\"([^\"]*)\"")
-	hqurl = string.match( page, "\"stream_h264_hq_url\"%s*:%s*\"([^\"]*)\"")
-	baseurl = string.match( page, "\"stream_h264_url\"%s*:%s*\"([^\"]*)\"")
-	ldurl = string.match( page, "\"stream_h264_ld_url\"%s*:%s*\"([^\"]*)\"")
-	livehlsurl = string.match( page, "\"stream_live_hls_url\"%s*:%s*\"([^\"]*)\"")
+        hd1080url = string.match( page, "\"720\":%[%{\"type\":\"video\\/mp4\"%,\"url\":\"([^\"]*)\"")
+	hdurl = string.match( page, "\"480\":%[%{\"type\":\"video\\/mp4\"%,\"url\":\"([^\"]*)\"")
+	hqurl = string.match( page, "\"380\":%[%{\"type\":\"video\\/mp4\"%,\"url\":\"([^\"]*)\"")
+	baseurl = string.match( page, "\"240\":%[%{\"type\":\"video\\/mp4\"%,\"url\":\"([^\"]*)\"")
+	
 
 
 	arr_videos_urls = {}
@@ -77,7 +76,7 @@ function parse()
 	if hdurl then table.insert(arr_videos_urls,hdurl) end
 	if hqurl then	table.insert(arr_videos_urls,hqurl)	end
 	if baseurl then table.insert(arr_videos_urls,baseurl) end
-	if ldurl then table.insert(arr_videos_urls,baseurl) end
+
 
 
 	if livehlsurl then
